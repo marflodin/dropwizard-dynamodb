@@ -1,0 +1,30 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:dynamodb="http://docs.socialsignin.org/schema/data/dynamodb"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd
+
+        http://docs.socialsignin.org/schema/data/dynamodb
+        http://docs.socialsignin.org/schema/data/dynamodb/spring-dynamodb.xsd
+
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="amazonDynamoDB" class="com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient">
+        <constructor-arg ref="amazonAWSCredentials" />
+        <property name="endpoint" value="https://dynamodb.eu-west-1.amazonaws.com" />
+    </bean>
+
+    <bean id="amazonAWSCredentials" class="com.amazonaws.auth.BasicAWSCredentials">
+        <constructor-arg value="" />
+        <constructor-arg value="" />
+    </bean>
+
+    <dynamodb:repositories base-package="com.sionsmith.repositories" amazon-dynamodb-ref="amazonDynamoDB" />
+
+</beans>
