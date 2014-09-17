@@ -1,7 +1,7 @@
 package com.sionsmith.views;
 
 import com.google.common.base.Charsets;
-import com.sionsmith.representation.Blog;
+import com.sionsmith.model.Blog;
 import io.dropwizard.views.View;
 
 import java.util.List;

@@ -13,7 +13,7 @@ public class AppConfig extends Configuration {
     private String template;
 
     @NotEmpty
-    private String defaultName = "Stranger";
+    private String defaultName = "DynamoDB";
 
     @JsonProperty
     public String getTemplate() {

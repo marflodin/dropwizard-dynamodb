@@ -56,7 +56,7 @@ public class DynamoDBUtils {
      *
      * @param tableName The name of the table to create.
      */
-    public void createCountTableIfNotExists(String tableName) {
+    public void createBlogTableIfNotExists(String tableName) {
         List<KeySchemaElement> ks = new ArrayList<>();
         ks.add(new KeySchemaElement().withKeyType(KeyType.HASH).withAttributeName(ATTRIBUTE_NAME_HASH_KEY));
         ks.add(new KeySchemaElement().withKeyType(KeyType.RANGE).withAttributeName(ATTRIBUTE_NAME_RANGE_KEY));
@@ -68,13 +68,10 @@ public class DynamoDBUtils {
         attributeDefinitions.add(new AttributeDefinition().withAttributeName(ATTRIBUTE_NAME_RANGE_KEY)
                 .withAttributeType(ScalarAttributeType.S));
 
-        // Create the table with enough write IOPS to handle 5 distinct resources updated every 1 second:
-        // 1 update/second * 5 resources = 5 write IOPS.
-        // The provisioned throughput will need to be adjusted if the cadinality of the input data or the interval for
         // updates changes.
         CreateTableRequest createTableRequest =
                 new CreateTableRequest().withTableName(tableName)
-                        .withProvisionedThroughput(new ProvisionedThroughput(10L, 5L))
+                        .withProvisionedThroughput(new ProvisionedThroughput(1L, 1L))
                         .withKeySchema(ks)
                         .withAttributeDefinitions(attributeDefinitions);
 
@@ -155,4 +152,5 @@ public class DynamoDBUtils {
             return false;
         }
     }
+
 }

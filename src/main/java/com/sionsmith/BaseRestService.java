@@ -1,15 +1,11 @@
 package com.sionsmith;
 
-import com.sionsmith.aws.DynamoDBManaged;
 import com.sionsmith.config.AppConfig;
-import com.sionsmith.representation.Blog;
-import com.sionsmith.resources.IndexResource;
 import com.sionsmith.spring.SpringContextLoaderListener;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.views.ViewBundle;
-import net.vz.mongodb.jackson.JacksonDBCollection;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 
 import javax.ws.rs.Path;
